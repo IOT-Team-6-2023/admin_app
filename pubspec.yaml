@@ -37,7 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   get_it:
   http:
-  json_annotation: 
+  json_annotation:
+  data_table_2:
+  dartz:
+  easy_sidemenu:
 
 dev_dependencies:
   flutter_test:
