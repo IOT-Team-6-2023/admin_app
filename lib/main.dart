@@ -1,5 +1,6 @@
 import 'package:admin_app/get_it_init.dart';
 import 'package:admin_app/ui/candidates_view_page.dart';
+import 'package:admin_app/ui/party_view_page.dart';
 import 'package:admin_app/ui/tally_view_page.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
@@ -92,23 +93,11 @@ class _HomePageState extends State<HomePage> {
               ),
               SideMenuItem(
                 priority: 2,
-                title: 'Files',
+                title: 'Parties',
                 onTap: (page, _) {
                   sideMenu.changePage(page);
                 },
-                icon: const Icon(Icons.file_copy_rounded),
-                trailing: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.all(Radius.circular(6))),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 6.0, vertical: 3),
-                      child: Text(
-                        'New',
-                        style: TextStyle(fontSize: 11, color: Colors.grey[800]),
-                      ),
-                    )),
+                icon: const Icon(Icons.group),
               ),
               SideMenuItem(
                 priority: 3,
@@ -153,15 +142,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 TallyViewPage(),
                 CandidatesViewPage(),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Files',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+                PartiesViewPage(),
                 Container(
                   color: Colors.white,
                   child: const Center(
