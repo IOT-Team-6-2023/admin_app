@@ -1,4 +1,6 @@
+import 'package:admin_app/data/add_new_candidate.dart';
 import 'package:admin_app/get_it_init.dart';
+import 'package:admin_app/ui/add_candidate_page.dart';
 import 'package:admin_app/ui/candidates_view_page.dart';
 import 'package:admin_app/ui/party_view_page.dart';
 import 'package:admin_app/ui/tally_view_page.dart';
@@ -101,11 +103,11 @@ class _HomePageState extends State<HomePage> {
               ),
               SideMenuItem(
                 priority: 3,
-                title: 'Download',
+                title: 'Add Candidate',
                 onTap: (page, _) {
                   sideMenu.changePage(page);
                 },
-                icon: const Icon(Icons.download),
+                icon: const Icon(Icons.person_add),
               ),
               SideMenuItem(
                 priority: 4,
@@ -143,15 +145,7 @@ class _HomePageState extends State<HomePage> {
                 TallyViewPage(),
                 CandidatesViewPage(),
                 PartiesViewPage(),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Download',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+                AddCandidatePage(),
                 Container(
                   color: Colors.white,
                   child: const Center(

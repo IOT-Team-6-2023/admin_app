@@ -6,14 +6,15 @@ import 'package:admin_app/services/http_client.dart';
 import 'package:http/http.dart';
 
 class AddNewCandidate {
-  Future<void> fetchCandidates(Candidate candidate) async {
-    final response = await getIt<HTTPClient>().post(
-        uri: Uri(
-            scheme: 'https',
-            host: 'dart.dev',
-            path: '/guides/libraries/library-tour',
-            fragment: 'numbers'),
-        body: candidate.toJson()) as Response;
-    if (response.statusCode != 201) {}
+  Future<Candidate> addNewCandidate(Candidate candidate) async {
+    // final response = await getIt<HTTPClient>().post(
+    //     uri: Uri(
+    //         scheme: 'https',
+    //         host: 'dart.dev',
+    //         path: '/guides/libraries/library-tour',
+    //         fragment: 'numbers'),
+    //     body: candidate.toJson()) as Response;
+    // if (response.statusCode != 201) {}
+    return Future<Candidate>.value(candidate);
   }
 }
