@@ -1,4 +1,5 @@
 import 'package:admin_app/get_it_init.dart';
+import 'package:admin_app/ui/candidates_view_page.dart';
 import 'package:admin_app/ui/tally_view_page.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
@@ -83,11 +84,11 @@ class _HomePageState extends State<HomePage> {
               ),
               SideMenuItem(
                 priority: 1,
-                title: 'Users',
+                title: 'Candidates',
                 onTap: (page, _) {
                   sideMenu.changePage(page);
                 },
-                icon: const Icon(Icons.supervisor_account),
+                icon: const Icon(Icons.person),
               ),
               SideMenuItem(
                 priority: 2,
@@ -151,15 +152,7 @@ class _HomePageState extends State<HomePage> {
               controller: page,
               children: [
                 TallyViewPage(),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Users',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+                CandidatesViewPage(),
                 Container(
                   color: Colors.white,
                   child: const Center(

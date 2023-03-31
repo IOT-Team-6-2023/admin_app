@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:admin_app/data/test_data/test_data.dart';
 import 'package:admin_app/get_it_init.dart';
 import 'package:admin_app/model/candidate.dart';
 import 'package:admin_app/model/tally_item.dart';
@@ -15,18 +16,7 @@ class FetchTally {
     //       path: '/guides/libraries/library-tour',
     //       fragment: 'numbers'),
     // ) as Response;
-    Iterable listTallyItems = json.decode("""[{
-"candidate": {
-"firstName": "John",
-"middleName": null,
-"lastName": "Doe",
-"date-of-birth": "1990-01-01T00:00:00Z",
-"party": {
-"name": "Independent"
-}
-},
-"voteCount": 123
-}]""");
+    Iterable listTallyItems = json.decode(mockTallyResponse);
     List<TallyItem> tally = List<TallyItem>.from(
         listTallyItems.map((model) => TallyItem.fromJson(model)));
     return Future.value(tally);

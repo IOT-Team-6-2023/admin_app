@@ -1,20 +1,23 @@
 import 'package:admin_app/data/fetch_tally.dart';
 import 'package:admin_app/get_it_init.dart';
+import 'package:admin_app/model/candidate.dart';
 import 'package:admin_app/model/tally_item.dart';
+import 'package:admin_app/repository/fetch_candidates_repository.dart';
 import 'package:admin_app/repository/fetch_tally_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
+import 'package:intl/intl.dart';
 
-class TallyViewPage extends StatelessWidget {
-  const TallyViewPage({super.key});
+class CandidatesViewPage extends StatelessWidget {
+  const CandidatesViewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Either<List<TallyItem>, String>>(
-      future: getIt<FetchTallyRepository>().fetchTally(),
+    return FutureBuilder<Either<List<Candidate>, String>>(
+      future: getIt<FetchCandidatesRepository>().fetchCandidates(),
       builder: (BuildContext context,
-          AsyncSnapshot<Either<List<TallyItem>, String>> snapshot) {
+          AsyncSnapshot<Either<List<Candidate>, String>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else {
@@ -33,17 +36,18 @@ class TallyViewPage extends StatelessWidget {
                     label: Text('Party'),
                   ),
                   DataColumn(
-                    label: Text('Votes'),
+                    label: Text('Date Of Birth'),
                   ),
                 ],
                 rows: List<DataRow>.generate(
                   l.length,
                   (index) => DataRow(
                     cells: [
-                      DataCell(Text(
-                          "${l[index].candidate.firstName} ${l[index].candidate.lastName}")),
-                      DataCell(Text(l[index].candidate.party.name)),
-                      DataCell(Text(l[index].voteCount.toString())),
+                      DataCell(
+                          Text("${l[index].firstName} ${l[index].lastName}")),
+                      DataCell(Text(l[index].party.name)),
+                      DataCell(Text(DateFormat('dd-MM-yyyy')
+                          .format(l[index].dateOfBirth))),
                     ],
                   ),
                 ),

@@ -41,6 +41,7 @@ dependencies:
   data_table_2:
   dartz:
   easy_sidemenu:
+  intl:
 
 dev_dependencies:
   flutter_test:
