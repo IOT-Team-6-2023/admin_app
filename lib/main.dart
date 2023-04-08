@@ -7,6 +7,8 @@ import 'package:admin_app/ui/tally_view_page.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/material.dart';
 
+import 'ui/add_party_page.dart';
+
 void main() {
   setup();
   runApp(const AdminApp());
@@ -45,6 +47,10 @@ class _HomePageState extends State<HomePage> {
     sideMenu.addListener((p0) {
       page.jumpToPage(p0);
     });
+  }
+
+  void changePageToTallyPage() {
+    sideMenu.changePage(1);
   }
 
   @override
@@ -103,38 +109,19 @@ class _HomePageState extends State<HomePage> {
               ),
               SideMenuItem(
                 priority: 3,
+                title: 'Add Party',
+                onTap: (page, _) {
+                  sideMenu.changePage(page);
+                },
+                icon: const Icon(Icons.star),
+              ),
+              SideMenuItem(
+                priority: 4,
                 title: 'Add Candidate',
                 onTap: (page, _) {
                   sideMenu.changePage(page);
                 },
                 icon: const Icon(Icons.person_add),
-              ),
-              SideMenuItem(
-                priority: 4,
-                title: 'Settings',
-                onTap: (page, _) {
-                  sideMenu.changePage(page);
-                },
-                icon: const Icon(Icons.settings),
-              ),
-              // SideMenuItem(
-              //   priority: 5,
-              //   onTap:(page){
-              //     sideMenu.changePage(5);
-              //   },
-              //   icon: const Icon(Icons.image_rounded),
-              // ),
-              // SideMenuItem(
-              //   priority: 6,
-              //   title: 'Only Title',
-              //   onTap:(page){
-              //     sideMenu.changePage(6);
-              //   },
-              // ),
-              const SideMenuItem(
-                priority: 7,
-                title: 'Exit',
-                icon: Icon(Icons.exit_to_app),
               ),
             ],
           ),
@@ -142,37 +129,11 @@ class _HomePageState extends State<HomePage> {
             child: PageView(
               controller: page,
               children: [
-                TallyViewPage(),
-                CandidatesViewPage(),
-                PartiesViewPage(),
-                AddCandidatePage(),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Settings',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Only Title',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: Text(
-                      'Only Icon',
-                      style: TextStyle(fontSize: 35),
-                    ),
-                  ),
-                ),
+                const TallyViewPage(),
+                const CandidatesViewPage(),
+                const PartiesViewPage(),
+                AddPartyPage(changePageToTallyPage: changePageToTallyPage),
+                const AddCandidatePage(),
               ],
             ),
           ),

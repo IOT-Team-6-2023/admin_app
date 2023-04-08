@@ -23,4 +23,8 @@ String mockCandidatesResponse = """[{
 
 String mockPartiesResponse = """[{
 "name": "Independent"
+},{
+"name": "Republicans"
+},{
+"name": "Democrats"
 }]""";
