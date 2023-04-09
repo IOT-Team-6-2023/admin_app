@@ -10,12 +10,11 @@ class AddNewCandidate {
   Future<Candidate> addNewCandidate(Candidate candidate) async {
     NetworkCore networkCore = getIt<NetworkCore>();
     Uri uri = networkCore.getURI('/votingAPI/candidates');
-    print("WHOO");
-    print(candidate.toJson());
     final response = await getIt<HTTPClient>()
         .post(uri: uri, body: candidate.toJson()) as Response;
-    print(response);
-    if (response.statusCode != 201) {}
+    if (response.statusCode != 201) {
+      throw Exception("API error");
+    }
     return Future<Candidate>.value(candidate);
   }
 }
