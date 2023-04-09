@@ -6,6 +6,10 @@ class HTTPClient {
   }
 
   Future<dynamic> post({required Uri uri, dynamic body, dynamic headers}) {
-    return http.post(uri, body: body, headers: headers);
+    print("INSDE");
+    print(body);
+    body["party"] = body["party"].toString();
+    print(body);
+    return http.post(uri, body: body, headers: headers ?? {});
   }
 }

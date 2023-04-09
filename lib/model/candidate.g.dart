@@ -9,7 +9,7 @@ part of 'candidate.dart';
 Candidate _$CandidateFromJson(Map<String, dynamic> json) => Candidate(
       json['firstName'] as String,
       json['lastName'] as String,
-      DateTime.parse(json['dateOfBirth'] as String),
+      _fromJson(json['dateOfBirth'] as String),
       json['party'] as int,
       middleName: json['middleName'] as String?,
     );
@@ -27,7 +27,7 @@ Map<String, dynamic> _$CandidateToJson(Candidate instance) {
 
   writeNotNull('middleName', instance.middleName);
   val['lastName'] = instance.lastName;
-  val['dateOfBirth'] = instance.dateOfBirth.toIso8601String();
+  val['dateOfBirth'] = _toJson(instance.dateOfBirth);
   val['party'] = instance.party;
   return val;
 }

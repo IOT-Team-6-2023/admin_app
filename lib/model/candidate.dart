@@ -1,7 +1,12 @@
 import 'package:admin_app/model/party.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'candidate.g.dart';
+
+final _dateFormatter = DateFormat('yyyy-MM-dd');
+DateTime _fromJson(String date) => _dateFormatter.parse(date);
+String _toJson(DateTime date) => _dateFormatter.format(date);
 
 @JsonSerializable()
 class Candidate {
@@ -10,6 +15,7 @@ class Candidate {
   final String? middleName;
   final String lastName;
 
+  @JsonKey(fromJson: _fromJson, toJson: _toJson)
   final DateTime dateOfBirth;
 
   int party;
