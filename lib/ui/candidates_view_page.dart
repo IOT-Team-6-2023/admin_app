@@ -45,7 +45,7 @@ class CandidatesViewPage extends StatelessWidget {
                     cells: [
                       DataCell(
                           Text("${l[index].firstName} ${l[index].lastName}")),
-                      DataCell(Text(l[index].party.name)),
+                      DataCell(Text(l[index].party.toString())),
                       DataCell(Text(DateFormat('dd-MM-yyyy')
                           .format(l[index].dateOfBirth))),
                     ],

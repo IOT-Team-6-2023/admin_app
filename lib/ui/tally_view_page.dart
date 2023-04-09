@@ -18,6 +18,7 @@ class TallyViewPage extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else {
+          print(snapshot);
           return snapshot.data!.fold(
             (l) {
               return DataTable2(
@@ -42,7 +43,7 @@ class TallyViewPage extends StatelessWidget {
                     cells: [
                       DataCell(Text(
                           "${l[index].candidate.firstName} ${l[index].candidate.lastName}")),
-                      DataCell(Text(l[index].candidate.party.name)),
+                      DataCell(Text(l[index].candidate.party.toString())),
                       DataCell(Text(l[index].voteCount.toString())),
                     ],
                   ),

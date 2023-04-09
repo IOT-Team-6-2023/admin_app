@@ -8,8 +8,9 @@ import 'package:dartz/dartz.dart';
 class FetchCandidatesRepository {
   Future<Either<List<Candidate>, String>> fetchCandidates() async {
     try {
-      return left<List<Candidate>, String>(
-          await getIt<FetchCandidates>().fetchCandidates());
+      List<Candidate> candidates =
+          await getIt<FetchCandidates>().fetchCandidates();
+      return left<List<Candidate>, String>(candidates);
     } on Exception catch (e) {
       return right<List<Candidate>, String>(e.toString());
     }

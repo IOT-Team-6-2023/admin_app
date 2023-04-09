@@ -1,5 +1,6 @@
 import 'package:admin_app/data/add_new_candidate.dart';
 import 'package:admin_app/data/add_party.dart';
+import 'package:admin_app/data/core/network_core.dart';
 import 'package:admin_app/data/fetch_candidates.dart';
 import 'package:admin_app/data/fetch_parties.dart';
 import 'package:admin_app/data/fetch_tally.dart';
@@ -26,4 +27,5 @@ void setup() {
   getIt.registerSingleton<FetchPartiesRepository>(FetchPartiesRepository());
   getIt.registerSingleton<AddCandidateRepository>(AddCandidateRepository());
   getIt.registerSingleton<AddPartyRepository>(AddPartyRepository());
+  getIt.registerSingleton<NetworkCore>(NetworkCore());
 }

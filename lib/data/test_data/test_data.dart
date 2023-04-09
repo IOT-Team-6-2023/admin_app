@@ -3,10 +3,8 @@ String mockTallyResponse = """[{
 "firstName": "John",
 "middleName": null,
 "lastName": "Doe",
-"date-of-birth": "1990-01-01T00:00:00Z",
-"party": {
-"name": "Independent"
-}
+"dateOfBirth": "1990-01-01T00:00:00Z",
+"party": 1
 },
 "voteCount": 123
 }]""";

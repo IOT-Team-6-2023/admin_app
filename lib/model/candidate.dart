@@ -10,10 +10,9 @@ class Candidate {
   final String? middleName;
   final String lastName;
 
-  @JsonKey(name: 'date-of-birth')
   final DateTime dateOfBirth;
 
-  Party party;
+  int party;
 
   Candidate(
     this.firstName,

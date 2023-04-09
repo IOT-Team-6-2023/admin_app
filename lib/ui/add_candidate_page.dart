@@ -163,7 +163,7 @@ class AddCandidatePageState extends State<AddCandidatePage> {
                                       candidateFirstNameController.text,
                                       candidateLastNameController.text,
                                       candidateDob.value,
-                                      candidateParty.value));
+                                      1));
                             }
                           },
                           child: const Text('Submit'),
