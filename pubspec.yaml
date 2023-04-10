@@ -42,6 +42,7 @@ dependencies:
   dartz:
   easy_sidemenu:
   intl:
+  tuple:
 
 dev_dependencies:
   flutter_test:

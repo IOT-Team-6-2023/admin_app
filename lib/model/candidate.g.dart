@@ -11,7 +11,9 @@ Candidate _$CandidateFromJson(Map<String, dynamic> json) => Candidate(
       json['lastName'] as String,
       _fromJson(json['dateOfBirth'] as String),
       json['party'] as int,
-      json['party_name'] as String,
+      json['constituency'] as int,
+      constituency_name: json['constituency_name'] as String?,
+      party_name: json['party_name'] as String?,
       middleName: json['middleName'] as String?,
     );
 
@@ -31,5 +33,7 @@ Map<String, dynamic> _$CandidateToJson(Candidate instance) {
   val['dateOfBirth'] = _toJson(instance.dateOfBirth);
   val['party'] = instance.party;
   val['party_name'] = instance.party_name;
+  val['constituency'] = instance.constituency;
+  val['constituency_name'] = instance.constituency_name;
   return val;
 }

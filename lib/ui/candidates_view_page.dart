@@ -36,6 +36,9 @@ class CandidatesViewPage extends StatelessWidget {
                     label: Text('Party'),
                   ),
                   DataColumn(
+                    label: Text('Constituency'),
+                  ),
+                  DataColumn(
                     label: Text('Date Of Birth'),
                   ),
                 ],
@@ -45,7 +48,8 @@ class CandidatesViewPage extends StatelessWidget {
                     cells: [
                       DataCell(
                           Text("${l[index].firstName} ${l[index].lastName}")),
-                      DataCell(Text(l[index].party.toString())),
+                      DataCell(Text(l[index].party_name.toString())),
+                      DataCell(Text(l[index].constituency_name.toString())),
                       DataCell(Text(DateFormat('dd-MM-yyyy')
                           .format(l[index].dateOfBirth))),
                     ],

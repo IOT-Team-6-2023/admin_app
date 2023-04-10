@@ -1,8 +1,11 @@
+import 'package:admin_app/model/constituency.dart';
 import 'package:admin_app/model/party.dart';
 import 'package:admin_app/repository/add_candidate_repository.dart';
+import 'package:admin_app/repository/fetch_parties_and_constituencies_repository.dart';
 import 'package:dartz/dartz.dart' as dartz;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tuple/tuple.dart';
 
 import '../get_it_init.dart';
 import '../model/candidate.dart';
@@ -27,10 +30,11 @@ class AddCandidatePageState extends State<AddCandidatePage> {
   final ValueNotifier<DateTime> candidateDob =
       ValueNotifier<DateTime>(DateTime.now());
 
-  Party noneParty = Party("None", -1);
-
   final ValueNotifier<Party> candidateParty =
       ValueNotifier<Party>(Party("", -1));
+
+  final ValueNotifier<Constituency> candidateConstituency =
+      ValueNotifier<Constituency>(Constituency("", -1));
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -46,22 +50,30 @@ class AddCandidatePageState extends State<AddCandidatePage> {
 
   @override
   void initState() {
-    candidateParty.value = noneParty;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<dartz.Either<List<Party>, String>>(
-      future: getIt<FetchPartiesRepository>().fetchParties(),
+    return FutureBuilder<
+        dartz.Either<Tuple2<List<Party>, List<Constituency>>, String>>(
+      future: getIt<FetchPartiesAndConstituenciesRepository>()
+          .fetchPartiesAndConstituencies(),
       builder: (BuildContext context,
-          AsyncSnapshot<dartz.Either<List<Party>, String>> snapshot) {
+          AsyncSnapshot<
+                  dartz.Either<Tuple2<List<Party>, List<Constituency>>, String>>
+              snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return snapshot.data!.fold(
             (l) {
-              if (!l.contains(noneParty)) l.add(noneParty);
+              if (candidateConstituency.value.constituency_id == -1) {
+                candidateConstituency.value = l.item2[0];
+              }
+              if (candidateParty.value.party_id == -1) {
+                candidateParty.value = l.item1[0];
+              }
               return Form(
                   key: _formKey,
                   child: Column(
@@ -140,10 +152,31 @@ class AddCandidatePageState extends State<AddCandidatePage> {
                                 candidateParty.value = newValue!;
                                 print(candidateParty.value.name);
                               },
-                              items: l.map((Party party) {
+                              items: l.item1.map((Party party) {
                                 return DropdownMenuItem<Party>(
                                   value: party,
                                   child: Text(party.name),
+                                );
+                              }).toList(),
+                            ),
+                          );
+                        },
+                      ),
+                      ValueListenableBuilder(
+                        valueListenable: candidateConstituency,
+                        builder: (BuildContext context, Constituency value,
+                            Widget? child) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DropdownButton<Constituency>(
+                              value: candidateConstituency.value,
+                              onChanged: (Constituency? newValue) {
+                                candidateConstituency.value = newValue!;
+                              },
+                              items: l.item2.map((Constituency constituency) {
+                                return DropdownMenuItem<Constituency>(
+                                  value: constituency,
+                                  child: Text(constituency.name),
                                 );
                               }).toList(),
                             ),
@@ -172,7 +205,8 @@ class AddCandidatePageState extends State<AddCandidatePage> {
                                         candidateLastNameController.text,
                                         candidateDob.value,
                                         candidateParty.value.party_id,
-                                        candidateParty.value.name));
+                                        candidateConstituency
+                                            .value.constituency_id));
                               }
                             }
                           },
