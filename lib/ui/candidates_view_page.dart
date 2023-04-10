@@ -29,17 +29,29 @@ class CandidatesViewPage extends StatelessWidget {
                 minWidth: 600,
                 columns: const [
                   DataColumn2(
-                    label: Text('Name'),
+                    label: Text(
+                      'Name',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     size: ColumnSize.L,
                   ),
                   DataColumn(
-                    label: Text('Party'),
+                    label: Text(
+                      'Party',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                   DataColumn(
-                    label: Text('Constituency'),
+                    label: Text(
+                      'Constituency',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                   DataColumn(
-                    label: Text('Date Of Birth'),
+                    label: Text(
+                      'Date Of Birth',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
                 rows: List<DataRow>.generate(

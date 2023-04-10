@@ -31,7 +31,10 @@ class PartiesViewPage extends StatelessWidget {
                 minWidth: 600,
                 columns: const [
                   DataColumn2(
-                    label: Text('Name'),
+                    label: Text(
+                      'Name',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     size: ColumnSize.L,
                   ),
                 ],
