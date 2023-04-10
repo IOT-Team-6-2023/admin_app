@@ -18,6 +18,8 @@ class TallyViewPage extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else {
+          print("HELLO");
+          print(snapshot.data);
           print(snapshot);
           return snapshot.data!.fold(
             (l) {
@@ -30,9 +32,9 @@ class TallyViewPage extends StatelessWidget {
                     label: Text('Name'),
                     size: ColumnSize.L,
                   ),
-                  DataColumn(
-                    label: Text('Party'),
-                  ),
+                  // DataColumn(
+                  //   label: Text('Party'),
+                  // ),
                   DataColumn(
                     label: Text('Votes'),
                   ),
@@ -41,17 +43,15 @@ class TallyViewPage extends StatelessWidget {
                   l.length,
                   (index) => DataRow(
                     cells: [
-                      DataCell(Text(
-                          "${l[index].candidate.firstName} ${l[index].candidate.lastName}")),
-                      DataCell(Text(l[index].candidate.party.toString())),
-                      DataCell(Text(l[index].voteCount.toString())),
+                      DataCell(Text(l[index].candidate_name)),
+                      DataCell(Text(l[index].count.toString())),
                     ],
                   ),
                 ),
               );
             },
             (r) {
-              return Center(child: Text(snapshot.data!.getOrElse(() => "")));
+              return Center(child: Text(r));
             },
           );
         }

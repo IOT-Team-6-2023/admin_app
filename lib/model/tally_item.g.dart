@@ -7,11 +7,13 @@ part of 'tally_item.dart';
 // **************************************************************************
 
 TallyItem _$TallyItemFromJson(Map<String, dynamic> json) => TallyItem(
-      Candidate.fromJson(json['candidate'] as Map<String, dynamic>),
-      json['voteCount'] as int,
+      json['candidate_id'] as int,
+      json['count'] as String,
+      json['candidate_name'] as String,
     );
 
 Map<String, dynamic> _$TallyItemToJson(TallyItem instance) => <String, dynamic>{
-      'candidate': instance.candidate,
-      'voteCount': instance.voteCount,
+      'candidate_id': instance.candidate_id,
+      'candidate_name': instance.candidate_name,
+      'count': instance.count,
     };

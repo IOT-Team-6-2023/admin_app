@@ -5,9 +5,10 @@ part 'tally_item.g.dart';
 
 @JsonSerializable()
 class TallyItem {
-  final Candidate candidate;
-  final int voteCount;
-  TallyItem(this.candidate, this.voteCount);
+  final int candidate_id;
+  final String candidate_name;
+  final String count;
+  TallyItem(this.candidate_id, this.count, this.candidate_name);
 
   factory TallyItem.fromJson(Map<String, dynamic> json) =>
       _$TallyItemFromJson(json);
