@@ -19,12 +19,14 @@ class Candidate {
   final DateTime dateOfBirth;
 
   int party;
+  String party_name;
 
   Candidate(
     this.firstName,
     this.lastName,
     this.dateOfBirth,
-    this.party, {
+    this.party,
+    this.party_name, {
     this.middleName,
   });
 

@@ -2,6 +2,7 @@ import 'package:admin_app/data/add_new_candidate.dart';
 import 'package:admin_app/get_it_init.dart';
 import 'package:admin_app/ui/add_candidate_page.dart';
 import 'package:admin_app/ui/candidates_view_page.dart';
+import 'package:admin_app/ui/constituency_view_page.dart';
 import 'package:admin_app/ui/party_view_page.dart';
 import 'package:admin_app/ui/tally_view_page.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
@@ -109,6 +110,14 @@ class _HomePageState extends State<HomePage> {
               ),
               SideMenuItem(
                 priority: 3,
+                title: 'Constituencies',
+                onTap: (page, _) {
+                  sideMenu.changePage(page);
+                },
+                icon: const Icon(Icons.location_on),
+              ),
+              SideMenuItem(
+                priority: 4,
                 title: 'Add Party',
                 onTap: (page, _) {
                   sideMenu.changePage(page);
@@ -116,7 +125,7 @@ class _HomePageState extends State<HomePage> {
                 icon: const Icon(Icons.star),
               ),
               SideMenuItem(
-                priority: 4,
+                priority: 5,
                 title: 'Add Candidate',
                 onTap: (page, _) {
                   sideMenu.changePage(page);
@@ -132,6 +141,7 @@ class _HomePageState extends State<HomePage> {
                 const TallyViewPage(),
                 const CandidatesViewPage(),
                 const PartiesViewPage(),
+                const ConstituenciesViewPage(),
                 AddPartyPage(changePageToTallyPage: changePageToTallyPage),
                 const AddCandidatePage(),
               ],

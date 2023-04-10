@@ -27,9 +27,10 @@ class AddCandidatePageState extends State<AddCandidatePage> {
   final ValueNotifier<DateTime> candidateDob =
       ValueNotifier<DateTime>(DateTime.now());
 
-  Party noneParty = Party("None");
+  Party noneParty = Party("None", -1);
 
-  final ValueNotifier<Party> candidateParty = ValueNotifier<Party>(Party(""));
+  final ValueNotifier<Party> candidateParty =
+      ValueNotifier<Party>(Party("", -1));
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -154,16 +155,25 @@ class AddCandidatePageState extends State<AddCandidatePage> {
                         child: ElevatedButton(
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Adding Candidate')),
-                              );
-                              await getIt<AddCandidateRepository>()
-                                  .addCandidate(Candidate(
-                                      candidateFirstNameController.text,
-                                      candidateLastNameController.text,
-                                      candidateDob.value,
-                                      1));
+                              if (candidateParty.value.party_id == -1) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text(
+                                          'Please select an appropriate party other than None')),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Adding Candidate')),
+                                );
+                                await getIt<AddCandidateRepository>()
+                                    .addCandidate(Candidate(
+                                        candidateFirstNameController.text,
+                                        candidateLastNameController.text,
+                                        candidateDob.value,
+                                        candidateParty.value.party_id,
+                                        candidateParty.value.name));
+                              }
                             }
                           },
                           child: const Text('Submit'),

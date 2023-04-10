@@ -5,9 +5,8 @@ part 'party.g.dart';
 @JsonSerializable()
 class Party {
   final String name;
-  Party(
-    this.name,
-  );
+  final int party_id;
+  Party(this.name, [this.party_id = -1]);
 
   factory Party.fromJson(Map<String, dynamic> json) => _$PartyFromJson(json);
 
