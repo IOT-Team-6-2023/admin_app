@@ -16,6 +16,9 @@ class HTTPClient {
       body.remove("party_name");
       body.remove("constituency_name");
     }
+    if (uri.toString().contains('constituency')) {
+      body["constituency_id"] = body["constituency_id"].toString();
+    }
     print(body);
     return http.post(uri, body: body, headers: headers ?? {});
   }

@@ -1,6 +1,7 @@
 import 'package:admin_app/data/add_new_candidate.dart';
 import 'package:admin_app/get_it_init.dart';
 import 'package:admin_app/ui/add_candidate_page.dart';
+import 'package:admin_app/ui/add_constituency_page.dart';
 import 'package:admin_app/ui/candidates_view_page.dart';
 import 'package:admin_app/ui/constituency_view_page.dart';
 import 'package:admin_app/ui/party_view_page.dart';
@@ -126,6 +127,14 @@ class _HomePageState extends State<HomePage> {
               ),
               SideMenuItem(
                 priority: 5,
+                title: 'Add Constituency',
+                onTap: (page, _) {
+                  sideMenu.changePage(page);
+                },
+                icon: const Icon(Icons.add_location_alt),
+              ),
+              SideMenuItem(
+                priority: 6,
                 title: 'Add Candidate',
                 onTap: (page, _) {
                   sideMenu.changePage(page);
@@ -142,7 +151,8 @@ class _HomePageState extends State<HomePage> {
                 const CandidatesViewPage(),
                 const PartiesViewPage(),
                 const ConstituenciesViewPage(),
-                AddPartyPage(changePageToTallyPage: changePageToTallyPage),
+                AddPartyPage(),
+                AddConstituencyPage(),
                 const AddCandidatePage(),
               ],
             ),

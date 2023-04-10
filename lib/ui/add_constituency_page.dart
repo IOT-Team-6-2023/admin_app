@@ -1,18 +1,18 @@
 import 'package:admin_app/get_it_init.dart';
-import 'package:admin_app/model/party.dart';
-import 'package:admin_app/repository/add_party_repository.dart';
+import 'package:admin_app/model/constituency.dart';
+import 'package:admin_app/repository/add_constituency_repository.dart';
 import 'package:flutter/material.dart';
 
-class AddPartyPage extends StatefulWidget {
-  AddPartyPage({super.key});
+class AddConstituencyPage extends StatefulWidget {
+  AddConstituencyPage({super.key});
 
   @override
-  State<AddPartyPage> createState() => _AddPartyPageState();
+  State<AddConstituencyPage> createState() => _AddConstituencyPageState();
 }
 
-class _AddPartyPageState extends State<AddPartyPage> {
+class _AddConstituencyPageState extends State<AddConstituencyPage> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController partyNameController = TextEditingController();
+  TextEditingController constituencyNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _AddPartyPageState extends State<AddPartyPage> {
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 decoration: InputDecoration(
-                  labelText: "Enter Party Name",
+                  labelText: "Enter Constituency Name",
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
@@ -33,11 +33,11 @@ class _AddPartyPageState extends State<AddPartyPage> {
                   ),
                   //fillColor: Colors.green
                 ),
-                controller: partyNameController,
+                controller: constituencyNameController,
                 // The validator receives the text that the user has entered.
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a party name';
+                    return 'Please enter a constituency name';
                   }
                   return null;
                 },
@@ -49,10 +49,10 @@ class _AddPartyPageState extends State<AddPartyPage> {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Adding Party')),
+                      const SnackBar(content: Text('Adding Constituency')),
                     );
-                    await getIt<AddPartyRepository>()
-                        .addParty(Party(partyNameController.text));
+                    await getIt<AddConstituencyRepository>().addConstituency(
+                        Constituency(constituencyNameController.text));
                   }
                 },
                 child: const Text('Submit'),
