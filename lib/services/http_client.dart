@@ -6,7 +6,6 @@ class HTTPClient {
   }
 
   Future<dynamic> post({required Uri uri, dynamic body, dynamic headers}) {
-    print(body);
     if (uri.toString().contains('party')) {
       body["party_id"] = body["party_id"].toString();
     }
@@ -19,7 +18,6 @@ class HTTPClient {
     if (uri.toString().contains('constituency')) {
       body["constituency_id"] = body["constituency_id"].toString();
     }
-    print(body);
     return http.post(uri, body: body, headers: headers ?? {});
   }
 }

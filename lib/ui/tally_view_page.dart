@@ -18,9 +18,6 @@ class TallyViewPage extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          print("HELLO");
-          print(snapshot.data);
-          print(snapshot);
           return snapshot.data!.fold(
             (l) {
               return DataTable2(

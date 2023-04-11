@@ -15,12 +15,9 @@ class FetchTally {
     final response = await getIt<HTTPClient>().get(
       uri: uri,
     ) as Response;
-    print("HEHEHHEHEHE");
-    print(response.body);
     Iterable listTallyItems = json.decode(response.body);
     List<TallyItem> tally = List<TallyItem>.from(
         listTallyItems.map((model) => TallyItem.fromJson(model)));
-    print(tally);
     return tally;
   }
 }

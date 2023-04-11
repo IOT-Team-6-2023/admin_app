@@ -17,8 +17,6 @@ class FetchCandidates {
     Iterable listCandidates = json.decode(response.body);
     List<Candidate> candidates = List<Candidate>.from(
         listCandidates.map((model) => Candidate.fromJson(model)));
-    print(response.body);
-    print(candidates);
     return candidates;
   }
 }

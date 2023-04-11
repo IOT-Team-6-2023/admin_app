@@ -147,10 +147,7 @@ class AddCandidatePageState extends State<AddCandidatePage> {
                             child: DropdownButton<Party>(
                               value: candidateParty.value,
                               onChanged: (Party? newValue) {
-                                print(newValue!.name);
-                                print(candidateParty!.value);
                                 candidateParty.value = newValue!;
-                                print(candidateParty.value.name);
                               },
                               items: l.item1.map((Party party) {
                                 return DropdownMenuItem<Party>(

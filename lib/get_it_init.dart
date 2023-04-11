@@ -40,6 +40,7 @@ void setup() {
       FetchPartiesAndConstituenciesRepository());
   getIt.registerSingleton<FetchConstituenciesRepository>(
       FetchConstituenciesRepository());
+  getIt.registerSingleton<AddPartyRepository>(AddPartyRepository());
   getIt.registerSingleton<AddCandidateRepository>(AddCandidateRepository());
   getIt.registerSingleton<AddConstituencyRepository>(
       AddConstituencyRepository());
